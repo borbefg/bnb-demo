@@ -1,0 +1,20 @@
+<header class="pb-3 mb-4 border-bottom">
+  <h1>Reservations</h1>
+</header>
+
+<div class="card-group shadow-sm">
+  <% @payloads.each_with_index do |payload, index| %>
+    <div class="card border-0">
+      <div class="card-body">
+        <div class="code-container rounded-3 p-5 mb-4">
+          <pre><code class="language-json"><%= JSON.pretty_generate payload %></code></pre>
+        </div>
+        <%=
+          button_to "POST Payload #{index + 1}",
+          { params: payload, controller: :reservations, action: :create, method: :post },
+          { class: 'btn w-100 shadow-sm' }
+        %>
+      </div>
+    </div>
+  <% end %>
+</div>
